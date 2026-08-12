@@ -42,6 +42,7 @@ import {
   SidebarSeparator,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import { getBrokerPageTitle, isBrokerNavActive } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
 type NavItem = {
@@ -69,20 +70,6 @@ const pageTitles: { prefix: string; title: string }[] = [
   { prefix: "/revenue", title: "Revenue" },
   { prefix: "/settings", title: "Settings" },
 ]
-
-function isActive(pathname: string, href: string) {
-  if (href === "/dashboard") {
-    return pathname === "/dashboard"
-  }
-  return pathname === href || pathname.startsWith(`${href}/`)
-}
-
-function getPageTitle(pathname: string) {
-  const match = pageTitles.find(
-    ({ prefix }) => pathname === prefix || pathname.startsWith(`${prefix}/`)
-  )
-  return match?.title ?? "Dashboard"
-}
 
 function BrokerSidebar() {
   const pathname = usePathname()
@@ -113,7 +100,7 @@ function BrokerSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {navItems.map(({ label, href, icon: Icon, badge }) => {
-                const active = isActive(pathname, href)
+                const active = isBrokerNavActive(pathname, href)
                 return (
                   <SidebarMenuItem key={href}>
                     <SidebarMenuButton
@@ -228,7 +215,7 @@ function BrokerTopBar({ title }: { title: string }) {
 
 export function DashLayout({ children }: { children: React.ReactNode }) {
   const pathname = usePathname()
-  const title = getPageTitle(pathname)
+  const title = getBrokerPageTitle(pathname, pageTitles)
 
   return (
     <SidebarProvider

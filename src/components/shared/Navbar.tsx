@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation"
 import { Building2 } from "lucide-react"
 
 import { buttonVariants } from "@/components/ui/button"
+import { isPublicNavActive } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
 const navLinks = [
@@ -13,11 +14,6 @@ const navLinks = [
   { label: "Properties", href: "/listings" },
   { label: "Contact", href: "/contact" },
 ] as const
-
-function isActive(pathname: string, href: string) {
-  if (href === "/") return pathname === "/"
-  return pathname === href || pathname.startsWith(`${href}/`)
-}
 
 export function Navbar() {
   const pathname = usePathname()
@@ -41,7 +37,7 @@ export function Navbar() {
 
         <nav className="flex items-center gap-9">
           {navLinks.map(({ label, href }) => {
-            const active = isActive(pathname, href)
+            const active = isPublicNavActive(pathname, href)
             return (
               <Link
                 key={href}

@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { useEffect, useState } from "react"
 import {
   Bell,
   BookOpen,
@@ -15,6 +16,7 @@ import {
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
 import { CURRENT_CUSTOMER_NAME, getCurrentCustomer } from "@/data/customer"
+import { isCustomerNavActive } from "@/lib/navigation"
 import { cn } from "@/lib/utils"
 
 const NAV_ITEMS = [
@@ -25,18 +27,23 @@ const NAV_ITEMS = [
   { label: "Profile", href: "/portal#preferences", icon: BookOpen },
 ] as const
 
-function isActive(pathname: string, href: string) {
-  if (href.includes("#")) {
-    return pathname === href.split("#")[0]
-  }
-  if (href === "/portal") {
-    return pathname === "/portal"
-  }
-  return pathname === href || pathname.startsWith(`${href}/`)
+function useLocationHash() {
+  const pathname = usePathname()
+  const [hash, setHash] = useState("")
+
+  useEffect(() => {
+    const updateHash = () => setHash(window.location.hash)
+    updateHash()
+    window.addEventListener("hashchange", updateHash)
+    return () => window.removeEventListener("hashchange", updateHash)
+  }, [pathname])
+
+  return hash
 }
 
 export function CustomerNav() {
   const pathname = usePathname()
+  const hash = useLocationHash()
   const customer = getCurrentCustomer()
 
   return (
@@ -53,10 +60,10 @@ export function CustomerNav() {
 
         <nav className="hidden flex-1 items-center gap-1 md:flex">
           {NAV_ITEMS.map((item) => {
-            const active = isActive(pathname, item.href)
+            const active = isCustomerNavActive(pathname, item.href, hash)
             return (
               <Link
-                key={item.href}
+                key={item.label}
                 href={item.href}
                 className={cn(
                   "flex items-center gap-1.5 rounded-lg px-3.5 py-2 text-[13px] transition-colors",
