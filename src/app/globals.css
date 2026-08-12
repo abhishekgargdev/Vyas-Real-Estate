@@ -33,6 +33,8 @@
   --color-success: var(--success);
   --color-success-foreground: var(--success-foreground);
   --color-success-bg: var(--success-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
   --color-accent-foreground: var(--accent-foreground);
   --color-accent: var(--accent);
   --color-muted-foreground: var(--muted-foreground);
@@ -64,6 +66,8 @@
   --success-green-bg: #dcfce7;
   --destructive-red: #dc2626;
   --destructive-red-bg: #fee2e2;
+  --warning-amber: #d97706;
+  --warning-amber-bg: #fef3c7;
 
   /* Semantic tokens (shadcn + app) */
   --background: var(--surface);
@@ -86,6 +90,8 @@
   --success: var(--success-green);
   --success-foreground: #ffffff;
   --success-bg: var(--success-green-bg);
+  --warning: var(--warning-amber);
+  --warning-bg: var(--warning-amber-bg);
   --border: var(--border-grey);
   --input: var(--border-grey);
   --ring: var(--gold);
@@ -126,6 +132,8 @@
   --success: #4ade80;
   --success-foreground: var(--navy);
   --success-bg: rgba(22, 163, 74, 0.15);
+  --warning: #fbbf24;
+  --warning-bg: rgba(217, 119, 6, 0.15);
   --border: rgba(255, 255, 255, 0.1);
   --input: rgba(255, 255, 255, 0.15);
   --ring: var(--gold);
