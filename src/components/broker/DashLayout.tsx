@@ -55,7 +55,7 @@ const navItems: NavItem[] = [
   { label: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
   { label: "Properties", href: "/properties", icon: Building2, badge: "24" },
   { label: "Clients", href: "/clients", icon: Users, badge: "8" },
-  { label: "Visits", href: "/visits", icon: Calendar, badge: "5" },
+  { label: "Visits", href: "/visit-calendar", icon: Calendar, badge: "5" },
   { label: "Revenue", href: "/revenue", icon: BarChart3 },
   { label: "Settings", href: "/settings", icon: Settings },
 ]
@@ -65,7 +65,7 @@ const pageTitles: { prefix: string; title: string }[] = [
   { prefix: "/properties/new", title: "Add New Property" },
   { prefix: "/properties", title: "Properties" },
   { prefix: "/clients", title: "Clients" },
-  { prefix: "/visits", title: "Visits" },
+  { prefix: "/visit-calendar", title: "Visits" },
   { prefix: "/revenue", title: "Revenue" },
   { prefix: "/settings", title: "Settings" },
 ]

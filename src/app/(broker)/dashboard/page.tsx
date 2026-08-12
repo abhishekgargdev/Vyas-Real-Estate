@@ -639,7 +639,7 @@ export default function DashboardPage() {
               variant="outline"
               className="w-full gap-1.5 text-xs font-semibold"
               nativeButton={false}
-              render={<Link href="/visits" />}
+              render={<Link href="/visit-calendar" />}
             >
               <Calendar className="size-3.5" />
               Open Full Calendar
