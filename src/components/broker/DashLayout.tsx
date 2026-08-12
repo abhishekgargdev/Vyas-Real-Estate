@@ -43,6 +43,7 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar"
 import { getBrokerPageTitle, isBrokerNavActive } from "@/lib/navigation"
+import { getAvatarColor } from "@/lib/status-styles"
 import { cn } from "@/lib/utils"
 
 type NavItem = {
@@ -141,7 +142,12 @@ function BrokerSidebar() {
       <SidebarFooter className="px-4 py-3.5">
         <div className="flex items-center gap-2.5 group-data-[collapsible=icon]:justify-center">
           <Avatar size="sm" className="after:border-white/10">
-            <AvatarFallback className="bg-[#2D4A6B] text-xs font-bold text-white">
+            <AvatarFallback
+              className={cn(
+                "text-xs font-bold text-primary-foreground",
+                getAvatarColor("Arjun Vyas")
+              )}
+            >
               AV
             </AvatarFallback>
           </Avatar>
@@ -163,7 +169,7 @@ function BrokerTopBar({ title }: { title: string }) {
     <header className="sticky top-0 z-50 flex h-[60px] shrink-0 items-center justify-between border-b border-border bg-card px-7">
       <div className="flex items-center gap-3">
         <SidebarTrigger className="md:hidden" />
-        <h1 className="font-heading text-lg font-semibold text-foreground">
+        <h1 className="shell-title">
           {title}
         </h1>
       </div>
@@ -190,7 +196,12 @@ function BrokerTopBar({ title }: { title: string }) {
         <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center gap-2 rounded-md border border-border px-2.5 py-1 transition-colors hover:bg-muted/50">
             <Avatar size="sm" className="size-7">
-              <AvatarFallback className="bg-[#2D4A6B] text-[11px] font-bold text-white">
+              <AvatarFallback
+                className={cn(
+                  "text-[11px] font-bold text-primary-foreground",
+                  getAvatarColor("Arjun Vyas")
+                )}
+              >
                 AV
               </AvatarFallback>
             </Avatar>
@@ -228,7 +239,9 @@ export function DashLayout({ children }: { children: React.ReactNode }) {
       <BrokerSidebar />
       <SidebarInset className="min-h-svh bg-background">
         <BrokerTopBar title={title} />
-        <div className="flex-1 overflow-y-auto px-7 py-6">{children}</div>
+        <div className="page-stack flex-1 overflow-y-auto px-6 py-6 lg:px-8">
+          {children}
+        </div>
       </SidebarInset>
     </SidebarProvider>
   )

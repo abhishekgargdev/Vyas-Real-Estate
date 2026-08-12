@@ -105,9 +105,9 @@ export function VisitList({
   compact?: boolean
 }) {
   return (
-    <Card className={cn("gap-0 overflow-hidden py-0", compact && "h-fit")}>
+    <Card className={cn("surface-card overflow-hidden", compact && "h-fit")}>
       <CardHeader className="border-b border-border px-4.5 py-3.5">
-        <CardTitle className="font-heading text-[15px] font-bold">
+        <CardTitle className="section-title-sm">
           {title}
         </CardTitle>
       </CardHeader>

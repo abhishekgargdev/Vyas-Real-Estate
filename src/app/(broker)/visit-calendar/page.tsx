@@ -37,6 +37,11 @@ import { toast } from "@/components/ui/toast"
 import { clients } from "@/data/clients"
 import { properties } from "@/data/properties"
 import { visits as initialVisits } from "@/data/visits"
+import {
+  visitTypeDotClass,
+  visitTypePillClass,
+  visitTypeTextClass,
+} from "@/lib/status-styles"
 import { cn } from "@/lib/utils"
 import type { Visit, VisitType } from "@/types"
 
@@ -46,17 +51,9 @@ const TYPE_LABELS: Record<VisitType, string> = {
   handover: "Handover",
 }
 
-const TYPE_DOT_CLASS: Record<VisitType, string> = {
-  "site-visit": "bg-accent",
-  "follow-up": "bg-purple-600",
-  handover: "bg-success",
-}
+const TYPE_DOT_CLASS = visitTypeDotClass
 
-const TYPE_PILL_CLASS: Record<VisitType, string> = {
-  "site-visit": "bg-accent text-accent-foreground",
-  "follow-up": "bg-purple-600 text-white",
-  handover: "bg-success text-success-foreground",
-}
+const TYPE_PILL_CLASS = visitTypePillClass
 
 const DEMO_TODAY = new Date(2026, 7, 12)
 
@@ -375,7 +372,7 @@ export default function VisitsPage() {
               classNames={{
                 month: "w-full gap-3",
                 month_caption: "mb-1",
-                caption_label: "font-heading text-lg font-bold text-foreground",
+                caption_label: "shell-title font-bold text-foreground",
                 weekdays: "border-b border-border",
                 weekday:
                   "flex-1 py-2 text-[11px] font-bold tracking-wide text-muted-foreground uppercase",
@@ -410,7 +407,7 @@ export default function VisitsPage() {
         <Card className="gap-0 overflow-hidden py-0">
           <CardHeader className="flex-row items-center justify-between gap-3 border-b border-border px-4 py-3.5">
             <div>
-              <CardTitle className="font-heading text-[15px] font-bold">
+              <CardTitle className="section-title-sm">
                 {formatPanelTitle(selectedDate)}
               </CardTitle>
               <p className="text-[11px] text-muted-foreground">
@@ -448,9 +445,7 @@ export default function VisitsPage() {
                         <span
                           className={cn(
                             "text-[11px] font-bold tracking-wide uppercase",
-                            visit.type === "site-visit" && "text-accent",
-                            visit.type === "follow-up" && "text-purple-600",
-                            visit.type === "handover" && "text-success"
+                            visitTypeTextClass[visit.type]
                           )}
                         >
                           {TYPE_LABELS[visit.type]}

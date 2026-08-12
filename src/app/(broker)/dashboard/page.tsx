@@ -59,8 +59,13 @@ import {
   revenueSummary,
 } from "@/data/revenue"
 import { visits } from "@/data/visits"
+import {
+  clientStatusShortLabels,
+  clientStatusStyles,
+  getAvatarColor,
+} from "@/lib/status-styles"
 import { cn } from "@/lib/utils"
-import type { ClientStatus, PropertyStatus } from "@/types"
+import type { PropertyStatus } from "@/types"
 
 const performanceChartConfig = {
   revenue: {
@@ -85,36 +90,6 @@ const statusChartLabels: Record<PropertyStatus, string> = {
   "under-construction": "Under Construction",
   "new-launch": "New Launch",
   sold: "Sold Out",
-}
-
-const clientStatusConfig: Record<
-  ClientStatus,
-  { label: string; className: string }
-> = {
-  new: {
-    label: "New",
-    className: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
-  },
-  contacted: {
-    label: "Contacted",
-    className: "bg-muted text-muted-foreground",
-  },
-  "visit-scheduled": {
-    label: "Visit Scheduled",
-    className: "bg-warning-bg text-warning",
-  },
-  negotiation: {
-    label: "Negotiation",
-    className: "bg-warning-bg text-warning",
-  },
-  closed: {
-    label: "Closed",
-    className: "bg-success-bg text-success",
-  },
-  lost: {
-    label: "Lost",
-    className: "bg-muted text-muted-foreground",
-  },
 }
 
 function getPropertyStatusDistribution() {
@@ -254,7 +229,7 @@ export default function DashboardPage() {
         <Card className="gap-0 py-0">
           <CardHeader className="flex-row items-start justify-between space-y-0 border-b border-border px-6 py-5">
             <div>
-              <CardTitle className="font-heading text-[17px] font-semibold">
+              <CardTitle className="section-title">
                 Performance Overview
               </CardTitle>
               <p className="text-[11px] text-muted-foreground">
@@ -351,7 +326,7 @@ export default function DashboardPage() {
 
         <Card className="gap-0 py-0">
           <CardHeader className="border-b border-border px-6 py-5">
-            <CardTitle className="font-heading text-[17px] font-semibold">
+            <CardTitle className="section-title">
               Property Status
             </CardTitle>
             <p className="text-[11px] text-muted-foreground">
@@ -424,7 +399,7 @@ export default function DashboardPage() {
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1fr_300px]">
         <Card className="gap-0 overflow-hidden py-0">
           <CardHeader className="flex-row items-center justify-between space-y-0 border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-[17px] font-semibold">
+            <CardTitle className="section-title">
               Recent Leads
             </CardTitle>
             <div className="flex gap-2">
@@ -475,7 +450,7 @@ export default function DashboardPage() {
             </TableHeader>
             <TableBody>
               {recentLeads.map((lead) => {
-                const status = clientStatusConfig[lead.status]
+                const status = clientStatusStyles[lead.status]
                 const selected = selectedLeads.has(lead.id)
 
                 return (
@@ -494,7 +469,12 @@ export default function DashboardPage() {
                     <TableCell className="px-3.5 py-2.5">
                       <div className="flex items-center gap-2">
                         <Avatar className="size-[30px]">
-                          <AvatarFallback className="bg-[#2D4A6B] text-[10px] font-bold text-white">
+                          <AvatarFallback
+                            className={cn(
+                              "text-[10px] font-bold text-white",
+                              getAvatarColor(lead.name)
+                            )}
+                          >
                             {lead.initials}
                           </AvatarFallback>
                         </Avatar>
@@ -516,7 +496,7 @@ export default function DashboardPage() {
                         variant="secondary"
                         className={cn("text-[11px] font-semibold", status.className)}
                       >
-                        {status.label}
+                        {clientStatusShortLabels[lead.status]}
                       </Badge>
                     </TableCell>
                     <TableCell className="px-3.5 py-2.5 text-xs text-muted-foreground">
@@ -572,7 +552,7 @@ export default function DashboardPage() {
 
         <Card className="flex flex-col gap-0 py-0">
           <CardHeader className="flex-row items-center justify-between space-y-0 border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-[17px] font-semibold">
+            <CardTitle className="section-title">
               Upcoming Visits
             </CardTitle>
             <Button variant="outline" size="icon-xs" className="size-7">
@@ -659,7 +639,7 @@ export default function DashboardPage() {
                 <div className="text-[10px] font-bold tracking-wider text-muted-foreground uppercase">
                   {stat.label}
                 </div>
-                <div className="font-heading text-lg font-bold text-foreground">
+                <div className="shell-title font-bold">
                   {stat.value}
                 </div>
                 <div className="text-[10px] font-semibold text-success">

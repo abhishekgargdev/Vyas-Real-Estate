@@ -14,6 +14,7 @@ import {
 import { EnquiryTrackerList } from "@/components/customer/enquiry-tracker"
 import { CustomerPropertyGrid } from "@/components/customer/customer-property-card"
 import { VisitList } from "@/components/customer/visit-list"
+import { PageHeader } from "@/components/shared/page-header"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { toast } from "@/components/ui/toast"
@@ -60,8 +61,8 @@ export default function CustomerPortalPage() {
       icon: BookOpen,
       label: "Active Enquiries",
       value: String(enquiries.length),
-      iconClass: "text-purple-600",
-      bgClass: "bg-purple-50 dark:bg-purple-950/40",
+      iconClass: "text-primary",
+      bgClass: "bg-secondary",
     },
     {
       icon: Heart,
@@ -74,34 +75,30 @@ export default function CustomerPortalPage() {
       icon: Calendar,
       label: "Upcoming Visits",
       value: String(upcomingVisits.length),
-      iconClass: "text-blue-600",
-      bgClass: "bg-blue-50 dark:bg-blue-950/40",
+      iconClass: "text-accent-foreground",
+      bgClass: "bg-accent/15",
     },
   ] as const
 
   return (
     <div>
-      <div className="mb-7">
-        <h1 className="font-heading text-[26px] font-bold text-foreground">
-          Welcome back, {customer.name.split(" ")[0]} 👋
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Here&apos;s a summary of your property journey with Vyas Realty
-        </p>
-      </div>
+      <PageHeader
+        title={`Welcome back, ${customer.name.split(" ")[0]} 👋`}
+        description="Here's a summary of your property journey with Vyas Realty"
+      />
 
       <div className="grid grid-cols-1 gap-6 xl:grid-cols-[1fr_340px]">
         <div>
           <div className="mb-6 grid grid-cols-1 gap-3.5 sm:grid-cols-3">
             {quickStats.map((stat) => (
-              <Card key={stat.label} className="gap-0 py-0">
+              <Card key={stat.label} className="surface-card">
                 <CardContent className="px-4.5 py-4">
                   <div
                     className={`mb-3 flex size-10 items-center justify-center rounded-lg ${stat.bgClass}`}
                   >
                     <stat.icon className={`size-4.5 ${stat.iconClass}`} />
                   </div>
-                  <div className="font-heading text-[26px] font-bold leading-none text-foreground">
+                  <div className="stat-value">
                     {stat.value}
                   </div>
                   <p className="mt-1 text-xs text-muted-foreground">
@@ -127,11 +124,11 @@ export default function CustomerPortalPage() {
         <div className="flex flex-col gap-5">
           <VisitList visits={allVisits} title="Upcoming Visits" compact />
 
-          <Card id="preferences" className="gap-0 py-0">
+          <Card id="preferences" className="surface-card">
             <CardContent className="px-5 py-4.5">
               <div className="mb-3.5 flex items-center gap-2">
                 <Sliders className="size-4 text-accent" />
-                <h2 className="font-heading text-[15px] font-bold text-foreground">
+                <h2 className="section-title-sm">
                   My Preferences
                 </h2>
               </div>

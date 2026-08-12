@@ -45,6 +45,7 @@ import {
 } from "@/components/ui/table"
 import { toast } from "@/components/ui/toast"
 import { properties } from "@/data/properties"
+import { transactionTypeClass } from "@/lib/status-styles"
 import {
   monthlyRevenueTrend,
   revenueByPropertyType,
@@ -131,9 +132,7 @@ function getTransactionPropertyType(propertyName: string) {
 }
 
 function typeBadgeClass(type: TransactionType) {
-  return type === "Sale"
-    ? "bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-300"
-    : "bg-success-bg text-success"
+  return transactionTypeClass[type]
 }
 
 function statusBadgeClass(status: TransactionStatus) {
@@ -281,7 +280,7 @@ export default function RevenuePage() {
       <div className="grid grid-cols-1 gap-4 xl:grid-cols-[1.6fr_1fr]">
         <Card className="gap-0 py-0">
           <CardHeader className="flex-row items-center justify-between space-y-0 border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-[15px] font-semibold">
+            <CardTitle className="section-title-sm">
               Revenue Trend
             </CardTitle>
             <div className="flex gap-4">
@@ -363,7 +362,7 @@ export default function RevenuePage() {
 
         <Card className="gap-0 py-0">
           <CardHeader className="border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-[15px] font-semibold">
+            <CardTitle className="section-title-sm">
               By Property Type
             </CardTitle>
           </CardHeader>

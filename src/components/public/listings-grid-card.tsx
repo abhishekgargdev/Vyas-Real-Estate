@@ -111,7 +111,7 @@ export function ListingsGridCard({ property }: { property: Property }) {
       <CardContent className="px-[18px] pt-4 pb-[18px]">
         <Link
           href={`/properties/${property.id}`}
-          className="font-heading mb-1.5 block text-[15px] leading-snug font-semibold text-foreground hover:text-accent-foreground"
+          className="section-title-sm mb-1.5 block leading-snug font-semibold hover:text-accent-foreground"
         >
           {property.title}
         </Link>

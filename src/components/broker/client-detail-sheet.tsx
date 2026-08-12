@@ -23,52 +23,8 @@ import {
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import { cn } from "@/lib/utils"
-import type { Client, ClientStatus } from "@/types"
-
-const statusConfig: Record<
-  ClientStatus,
-  { label: string; className: string }
-> = {
-  new: {
-    label: "New Inquiry",
-    className: "bg-purple-100 text-purple-700 dark:bg-purple-950 dark:text-purple-300",
-  },
-  contacted: {
-    label: "Contacted",
-    className: "bg-blue-100 text-blue-700 dark:bg-blue-950 dark:text-blue-300",
-  },
-  "visit-scheduled": {
-    label: "Visit Scheduled",
-    className: "bg-accent/15 text-accent-foreground",
-  },
-  negotiation: {
-    label: "Negotiation",
-    className: "bg-warning-bg text-warning",
-  },
-  closed: {
-    label: "Closed",
-    className: "bg-success-bg text-success",
-  },
-  lost: {
-    label: "Lost",
-    className: "bg-muted text-muted-foreground",
-  },
-}
-
-const avatarColors = [
-  "bg-[#1E293B]",
-  "bg-[#2D4A6B]",
-  "bg-[#3D3D5C]",
-  "bg-[#2A4535]",
-  "bg-[#4A2D35]",
-  "bg-[#3A2D4A]",
-  "bg-[#2D3A4A]",
-  "bg-[#4A3A2D]",
-] as const
-
-function getAvatarColor(name: string) {
-  return avatarColors[name.charCodeAt(0) % avatarColors.length]
-}
+import { clientStatusStyles, getAvatarColor } from "@/lib/status-styles"
+import type { Client } from "@/types"
 
 const timeline = [
   {
@@ -105,7 +61,7 @@ function ClientDetailSheetContent({
   onOpenChange: (open: boolean) => void
 }) {
   const [notes, setNotes] = useState(client.notes)
-  const status = statusConfig[client.status]
+  const status = clientStatusStyles[client.status]
 
   const handleSaveNote = () => {
     toast.add({
@@ -119,7 +75,7 @@ function ClientDetailSheetContent({
     <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-full gap-0 overflow-y-auto p-0 sm:max-w-[360px]">
         <SheetHeader className="border-b border-border px-5 py-4">
-          <SheetTitle className="font-heading text-[15px] font-semibold">
+          <SheetTitle className="section-title-sm font-semibold">
             Client Profile
           </SheetTitle>
           <SheetDescription className="sr-only">
@@ -140,7 +96,7 @@ function ClientDetailSheetContent({
               </AvatarFallback>
             </Avatar>
             <div>
-              <h3 className="font-heading text-[17px] font-bold text-foreground">
+              <h3 className="section-title">
                 {client.name}
               </h3>
               <Badge
@@ -281,5 +237,3 @@ export function ClientDetailSheet({
     />
   )
 }
-
-export { statusConfig, getAvatarColor }

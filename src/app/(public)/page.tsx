@@ -315,7 +315,7 @@ export default function HomePage() {
                         className="size-11 shrink-0 rounded-full object-cover"
                       />
                       <div>
-                        <div className="font-heading text-[15px] font-semibold text-foreground">
+                        <div className="section-title-sm font-semibold">
                           {testimonial.name}
                         </div>
                         <div className="text-xs text-muted-foreground">

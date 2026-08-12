@@ -11,11 +11,7 @@ import {
   Plus,
 } from "lucide-react"
 
-import {
-  ClientDetailSheet,
-  getAvatarColor,
-  statusConfig,
-} from "@/components/broker/client-detail-sheet"
+import { ClientDetailSheet } from "@/components/broker/client-detail-sheet"
 import { Avatar, AvatarFallback } from "@/components/ui/avatar"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
@@ -53,6 +49,11 @@ import {
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { clients as initialClients } from "@/data/clients"
+import {
+  clientStatusDotClass,
+  clientStatusStyles,
+  getAvatarColor,
+} from "@/lib/status-styles"
 import { cn } from "@/lib/utils"
 import type { Client, ClientStatus } from "@/types"
 
@@ -65,37 +66,37 @@ const KANBAN_COLUMNS: {
   {
     status: "new",
     label: "New Inquiry",
-    dotClass: "bg-purple-600",
+    dotClass: clientStatusDotClass.new,
     columnClass: "bg-background",
   },
   {
     status: "contacted",
     label: "Contacted",
-    dotClass: "bg-blue-600",
+    dotClass: clientStatusDotClass.contacted,
     columnClass: "bg-background",
   },
   {
     status: "visit-scheduled",
     label: "Visit Scheduled",
-    dotClass: "bg-accent",
+    dotClass: clientStatusDotClass["visit-scheduled"],
     columnClass: "bg-background",
   },
   {
     status: "negotiation",
     label: "Negotiation",
-    dotClass: "bg-warning",
+    dotClass: clientStatusDotClass.negotiation,
     columnClass: "bg-background",
   },
   {
     status: "closed",
     label: "Closed",
-    dotClass: "bg-success",
+    dotClass: clientStatusDotClass.closed,
     columnClass: "bg-success-bg/30",
   },
   {
     status: "lost",
     label: "Lost",
-    dotClass: "bg-muted-foreground",
+    dotClass: clientStatusDotClass.lost,
     columnClass: "bg-muted/40",
   },
 ]
@@ -352,7 +353,7 @@ export default function ClientsPage() {
               </TableHeader>
               <TableBody>
                 {leads.map((client, index) => {
-                  const status = statusConfig[client.status]
+                  const status = clientStatusStyles[client.status]
 
                   return (
                     <TableRow
@@ -466,7 +467,7 @@ export default function ClientsPage() {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="max-w-[520px] gap-0 overflow-hidden p-0">
           <DialogHeader className="border-b border-border px-6 py-5">
-            <DialogTitle className="font-heading text-lg font-bold">
+            <DialogTitle className="shell-title font-bold">
               Add New Client
             </DialogTitle>
           </DialogHeader>

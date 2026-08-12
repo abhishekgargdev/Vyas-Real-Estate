@@ -166,3 +166,41 @@
     @apply font-heading;
   }
 }
+
+@layer utilities {
+  .page-stack {
+    @apply flex flex-col gap-5;
+  }
+
+  .page-title {
+    @apply font-heading text-[26px] leading-tight font-bold text-foreground;
+  }
+
+  .page-subtitle {
+    @apply mt-1 text-sm text-muted-foreground;
+  }
+
+  .section-title {
+    @apply font-heading text-[17px] font-semibold text-foreground;
+  }
+
+  .section-title-sm {
+    @apply font-heading text-[15px] font-bold text-foreground;
+  }
+
+  .shell-title {
+    @apply font-heading text-lg font-semibold text-foreground;
+  }
+
+  .stat-value {
+    @apply font-heading text-[26px] leading-none font-bold text-foreground;
+  }
+
+  .price-value {
+    @apply font-heading text-[15px] font-bold text-foreground;
+  }
+
+  .surface-card {
+    @apply gap-0 py-0 shadow-sm;
+  }
+}

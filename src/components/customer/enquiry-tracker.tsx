@@ -62,7 +62,7 @@ export function EnquiryTracker({ enquiry }: { enquiry: CustomerEnquiry }) {
               </span>
             </div>
             <div className="mt-2 flex items-center justify-between gap-2">
-              <span className="font-heading text-[15px] font-bold text-foreground">
+              <span className="price-value">
                 {enquiry.property.priceLabel}
               </span>
               <ClientStatusBadge status={enquiry.status} />
@@ -139,7 +139,7 @@ export function EnquiryTrackerList({
   return (
     <div>
       <div className="mb-3.5 flex items-center justify-between">
-        <h2 className="font-heading text-[17px] font-bold text-foreground">
+        <h2 className="section-title">
           My Enquiries
         </h2>
         {showViewAll && (

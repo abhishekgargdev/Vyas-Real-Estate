@@ -236,7 +236,7 @@ function ProfileTab() {
             </Button>
           </div>
           <div>
-            <h3 className="font-heading text-lg font-bold text-foreground">
+            <h3 className="shell-title font-bold">
               {form.name}
             </h3>
             <p className="mt-1 text-[13px] text-muted-foreground">

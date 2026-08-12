@@ -443,7 +443,7 @@ export function PropertyDetailView({
                     className="size-[60px] rounded-full border-2 border-accent object-cover"
                   />
                   <div>
-                    <div className="font-heading text-[17px] font-semibold text-foreground">
+                    <div className="section-title">
                       {broker.name}
                     </div>
                     <div className="text-xs font-semibold text-accent">

@@ -44,7 +44,7 @@ export function TeamMemberCard({ member }: { member: TeamMember }) {
       </div>
 
       <CardContent className="px-5 pt-4.5 pb-5">
-        <h3 className="font-heading mb-1 text-[17px] font-semibold text-foreground">
+        <h3 className="section-title mb-1">
           {member.name}
         </h3>
         <p className="mb-1 text-xs font-semibold text-accent">{member.role}</p>

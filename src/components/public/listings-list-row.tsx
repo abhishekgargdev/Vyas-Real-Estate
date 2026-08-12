@@ -78,7 +78,7 @@ export function ListingsListRow({ property }: { property: Property }) {
           <div className="mb-1.5 flex items-start justify-between gap-6">
             <Link
               href={`/properties/${property.id}`}
-              className="font-heading text-[17px] leading-snug font-semibold text-foreground hover:text-accent-foreground"
+              className="section-title leading-snug hover:text-accent-foreground"
             >
               {property.title}
             </Link>

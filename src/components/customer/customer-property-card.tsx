@@ -27,7 +27,7 @@ export function CustomerPropertyCard({
   }
 
   return (
-    <Card className="gap-0 overflow-hidden py-0">
+    <Card className="surface-card overflow-hidden">
       <div className="relative">
         <div className="relative h-[140px] w-full">
           <Image
@@ -64,7 +64,7 @@ export function CustomerPropertyCard({
           </span>
         </div>
         <div className="mt-2 flex items-center justify-between">
-          <span className="font-heading text-[15px] font-bold text-foreground">
+          <span className="price-value">
             {property.priceLabel}
           </span>
           <Link
@@ -95,7 +95,7 @@ export function CustomerPropertyGrid({
   return (
     <div>
       <div className="mb-3.5 flex items-center justify-between">
-        <h2 className="font-heading text-[17px] font-bold text-foreground">
+        <h2 className="section-title">
           {title}
         </h2>
         {showBrowseLink && (
@@ -108,7 +108,7 @@ export function CustomerPropertyGrid({
         )}
       </div>
       {properties.length === 0 ? (
-        <Card className="gap-0 py-0">
+        <Card className="surface-card">
           <CardContent className="px-6 py-10 text-center">
             <p className="text-sm text-muted-foreground">
               No saved properties yet.

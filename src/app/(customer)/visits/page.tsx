@@ -4,6 +4,7 @@ import { useMemo } from "react"
 import { CalendarDays } from "lucide-react"
 
 import { VisitCard } from "@/components/customer/visit-list"
+import { PageHeader } from "@/components/shared/page-header"
 import { Badge } from "@/components/ui/badge"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { getCustomerVisits } from "@/data/customer"
@@ -29,19 +30,15 @@ export default function CustomerVisitsPage() {
 
   return (
     <div>
-      <div className="mb-7">
-        <h1 className="font-heading text-[26px] font-bold text-foreground">
-          My Visits
-        </h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Track scheduled site visits and past appointments
-        </p>
-      </div>
+      <PageHeader
+        title="My Visits"
+        description="Track scheduled site visits and past appointments"
+      />
 
       <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
-        <Card className="gap-0 overflow-hidden py-0">
+        <Card className="surface-card overflow-hidden">
           <CardHeader className="flex-row items-center justify-between border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-base font-semibold">
+            <CardTitle className="section-title">
               Upcoming
             </CardTitle>
             <Badge variant="secondary" className="bg-accent/10 text-accent">
@@ -64,9 +61,9 @@ export default function CustomerVisitsPage() {
           </CardContent>
         </Card>
 
-        <Card className="gap-0 overflow-hidden py-0">
+        <Card className="surface-card overflow-hidden">
           <CardHeader className="flex-row items-center justify-between border-b border-border px-5 py-4">
-            <CardTitle className="font-heading text-base font-semibold">
+            <CardTitle className="section-title">
               Past Visits
             </CardTitle>
             <Badge variant="secondary">{past.length}</Badge>
