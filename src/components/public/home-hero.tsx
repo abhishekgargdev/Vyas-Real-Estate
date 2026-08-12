@@ -145,7 +145,7 @@ export function HomeHero() {
               ]}
             />
             <div className="shrink-0 p-3 pl-4">
-              <Button size="lg" nativeButton={false} render={<Link href="/properties" />}>
+              <Button size="lg" nativeButton={false} render={<Link href="/listings" />}>
                 <Search className="size-4" />
                 Search
               </Button>

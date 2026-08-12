@@ -62,6 +62,7 @@ const navItems: NavItem[] = [
 
 const pageTitles: { prefix: string; title: string }[] = [
   { prefix: "/dashboard", title: "Dashboard" },
+  { prefix: "/properties/new", title: "Add New Property" },
   { prefix: "/properties", title: "Properties" },
   { prefix: "/clients", title: "Clients" },
   { prefix: "/visits", title: "Visits" },

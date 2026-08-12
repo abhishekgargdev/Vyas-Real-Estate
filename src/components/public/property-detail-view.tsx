@@ -214,7 +214,7 @@ export function PropertyDetailView({
           </Link>
           <span className="text-xs text-muted-foreground">/</span>
           <Link
-            href="/properties"
+            href="/listings"
             className="text-xs text-muted-foreground transition-colors hover:text-foreground"
           >
             Properties
@@ -520,7 +520,7 @@ export function PropertyDetailView({
                 </h2>
               </div>
               <Link
-                href="/properties"
+                href="/listings"
                 className="inline-flex items-center gap-1.5 border-b border-accent pb-px text-[13px] font-semibold text-accent-foreground"
               >
                 View All
