@@ -1,6 +1,7 @@
 {
-  "name": "real-estate-app",
+  "name": "vyas-real-estate",
   "version": "0.1.0",
+  "description": "Vyas Real Estate — a UI-only Next.js app with public listings, broker dashboard, and customer portal. Uses static dummy data; no backend.",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -8,6 +9,16 @@
     "start": "next start",
     "lint": "eslint"
   },
+  "keywords": [
+    "real-estate",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "shadcn",
+    "broker-dashboard",
+    "property-listings",
+    "ui-only"
+  ],
   "dependencies": {
     "@base-ui/react": "^1.7.0",
     "@hookform/resolvers": "^5.7.1",
