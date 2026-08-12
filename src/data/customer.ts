@@ -1,28 +1,23 @@
 import { clients } from "@/data/clients"
 import { properties } from "@/data/properties"
 import { visits } from "@/data/visits"
-import type { Client, ClientStatus, Property, Visit } from "@/types"
+import type {
+  Client,
+  CustomerEnquiry,
+  CustomerEnquiryEntry,
+  Property,
+  Visit,
+} from "@/types"
 
 export const CURRENT_CUSTOMER_NAME = "Priya Mehta"
 
-const ENQUIRY_ENTRIES: {
-  propertyMatch: string
-  status: ClientStatus
-  date: string
-}[] = [
+const ENQUIRY_ENTRIES: CustomerEnquiryEntry[] = [
   { propertyMatch: "Serenity Heights", status: "negotiation", date: "Aug 8" },
   { propertyMatch: "Greenwood", status: "visit-scheduled", date: "Aug 10" },
   { propertyMatch: "Park Avenue", status: "contacted", date: "Aug 11" },
 ]
 
 export const SAVED_PROPERTY_IDS = ["5", "6", "7"]
-
-export interface CustomerEnquiry {
-  id: string
-  property: Property
-  status: ClientStatus
-  date: string
-}
 
 function findPropertyByPartialTitle(match: string): Property | undefined {
   return properties.find((property) =>

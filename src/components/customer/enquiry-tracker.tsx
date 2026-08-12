@@ -7,7 +7,7 @@ import { Check, MapPin } from "lucide-react"
 import { ClientStatusBadge } from "@/components/customer/customer-status-badge"
 import { Card, CardContent } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
-import type { CustomerEnquiry } from "@/data/customer"
+import type { CustomerEnquiry } from "@/types"
 import type { ClientStatus } from "@/types"
 
 const PIPELINE_STEPS = [

@@ -37,6 +37,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import { cn } from "@/lib/utils"
+import type {
+  ActiveSession,
+  BrokerTeamMember,
+  NotificationKey,
+} from "@/types"
 
 const SETTINGS_TABS = [
   { value: "profile", label: "Profile", icon: User },
@@ -47,13 +52,13 @@ const SETTINGS_TABS = [
   { value: "security", label: "Security", icon: Shield },
 ] as const
 
-const BROKER_TEAM = [
+const BROKER_TEAM: BrokerTeamMember[] = [
   {
     id: "1",
     name: "Rajesh Vyas",
     role: "Admin",
     email: "rajesh@vyasrealty.com",
-    status: "active" as const,
+    status: "active",
     initials: "RV",
   },
   {
@@ -61,7 +66,7 @@ const BROKER_TEAM = [
     name: "Meera Shah",
     role: "Agent",
     email: "meera@vyasrealty.com",
-    status: "active" as const,
+    status: "active",
     initials: "MS",
   },
   {
@@ -69,7 +74,7 @@ const BROKER_TEAM = [
     name: "Amit Kulkarni",
     role: "Agent",
     email: "amit@vyasrealty.com",
-    status: "active" as const,
+    status: "active",
     initials: "AK",
   },
   {
@@ -77,12 +82,12 @@ const BROKER_TEAM = [
     name: "Neha Joshi",
     role: "Coordinator",
     email: "neha@vyasrealty.com",
-    status: "inactive" as const,
+    status: "inactive",
     initials: "NJ",
   },
 ]
 
-const ACTIVE_SESSIONS = [
+const ACTIVE_SESSIONS: ActiveSession[] = [
   {
     device: "Chrome · MacBook Pro",
     location: "Mumbai, IN",
@@ -165,16 +170,6 @@ const NOTIFICATION_GROUPS = [
     ],
   },
 ] as const
-
-type NotificationKey =
-  | "newLead"
-  | "visitReminder"
-  | "dealClosed"
-  | "newMessage"
-  | "monthlyReport"
-  | "teamActivity"
-  | "smsAlerts"
-  | "emailDigest"
 
 function SettingSwitch({
   checked,

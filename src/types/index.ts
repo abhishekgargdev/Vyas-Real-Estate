@@ -116,3 +116,79 @@ export interface Testimonial {
   rating: number
   property: string
 }
+
+export type AuthRole = "broker" | "customer"
+
+export function isAuthRole(
+  value: string | null | undefined
+): value is AuthRole {
+  return value === "broker" || value === "customer"
+}
+
+export interface CustomerEnquiryEntry {
+  propertyMatch: string
+  status: ClientStatus
+  date: string
+}
+
+export interface CustomerEnquiry {
+  id: string
+  property: Property
+  status: ClientStatus
+  date: string
+}
+
+export type NotificationKey =
+  | "newLead"
+  | "visitReminder"
+  | "dealClosed"
+  | "newMessage"
+  | "monthlyReport"
+  | "teamActivity"
+  | "smsAlerts"
+  | "emailDigest"
+
+export type BrokerTeamStatus = "active" | "inactive"
+
+export interface BrokerTeamMember {
+  id: string
+  name: string
+  role: string
+  email: string
+  status: BrokerTeamStatus
+  initials: string
+}
+
+export interface ActiveSession {
+  device: string
+  location: string
+  time: string
+  current: boolean
+}
+
+export interface PropertyFormState {
+  title: string
+  type: string
+  city: string
+  address: string
+  price: string
+  status: string
+  possession: string
+  rera: string
+  area: string
+  beds: string
+  baths: string
+  furnishing: string
+  amenities: Set<string>
+  description: string
+  floor: string
+  facing: string
+  age: string
+  videoUrl: string
+  ownerName: string
+  ownerPhone: string
+  ownerEmail: string
+  ownerType: string
+  ownerNotes: string
+  broker: string
+}

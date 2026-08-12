@@ -30,8 +30,7 @@ import { Textarea } from "@/components/ui/textarea"
 import { toast } from "@/components/ui/toast"
 import { teamMembers } from "@/data/team"
 import { cn } from "@/lib/utils"
-
-const STEPS = ["Basic Info", "Details", "Media Upload", "Owner Info"] as const
+import type { PropertyFormState } from "@/types"
 
 const STEP_DESCRIPTIONS = [
   "Fill in the core listing details.",
@@ -64,32 +63,7 @@ const MEDIA_PLACEHOLDERS = [
   "https://images.unsplash.com/photo-1663811396760-b6c84fa45ee9?w=200&h=140&fit=crop&auto=format",
 ] as const
 
-interface PropertyFormState {
-  title: string
-  type: string
-  city: string
-  address: string
-  price: string
-  status: string
-  possession: string
-  rera: string
-  area: string
-  beds: string
-  baths: string
-  furnishing: string
-  amenities: Set<string>
-  description: string
-  floor: string
-  facing: string
-  age: string
-  videoUrl: string
-  ownerName: string
-  ownerPhone: string
-  ownerEmail: string
-  ownerType: string
-  ownerNotes: string
-  broker: string
-}
+const STEPS = ["Basic Info", "Details", "Media Upload", "Owner Info"] as const
 
 const initialFormState: PropertyFormState = {
   title: "",

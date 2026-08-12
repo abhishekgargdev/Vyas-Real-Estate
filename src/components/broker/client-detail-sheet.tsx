@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import {
   Building2,
   ChevronDown,
@@ -95,23 +95,16 @@ interface ClientDetailSheetProps {
   onOpenChange: (open: boolean) => void
 }
 
-export function ClientDetailSheet({
+function ClientDetailSheetContent({
   client,
   open,
   onOpenChange,
-}: ClientDetailSheetProps) {
-  const [notes, setNotes] = useState(client?.notes ?? "")
-
-  useEffect(() => {
-    if (client) {
-      setNotes(client.notes)
-    }
-  }, [client])
-
-  if (!client) {
-    return null
-  }
-
+}: {
+  client: Client
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}) {
+  const [notes, setNotes] = useState(client.notes)
   const status = statusConfig[client.status]
 
   const handleSaveNote = () => {
@@ -123,15 +116,7 @@ export function ClientDetailSheet({
   }
 
   return (
-    <Sheet
-      open={open}
-      onOpenChange={(nextOpen) => {
-        onOpenChange(nextOpen)
-        if (nextOpen) {
-          setNotes(client.notes)
-        }
-      }}
-    >
+    <Sheet open={open} onOpenChange={onOpenChange}>
       <SheetContent className="w-full gap-0 overflow-y-auto p-0 sm:max-w-[360px]">
         <SheetHeader className="border-b border-border px-5 py-4">
           <SheetTitle className="font-heading text-[15px] font-semibold">
@@ -275,6 +260,25 @@ export function ClientDetailSheet({
         </div>
       </SheetContent>
     </Sheet>
+  )
+}
+
+export function ClientDetailSheet({
+  client,
+  open,
+  onOpenChange,
+}: ClientDetailSheetProps) {
+  if (!client) {
+    return null
+  }
+
+  return (
+    <ClientDetailSheetContent
+      key={client.id}
+      client={client}
+      open={open}
+      onOpenChange={onOpenChange}
+    />
   )
 }
 

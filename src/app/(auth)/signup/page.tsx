@@ -10,8 +10,7 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
-
-type AuthRole = "broker" | "customer"
+import { isAuthRole, type AuthRole } from "@/types"
 
 export default function SignupPage() {
   const router = useRouter()
@@ -43,7 +42,9 @@ export default function SignupPage() {
 
         <Tabs
           value={role}
-          onValueChange={(value) => setRole(value as AuthRole)}
+          onValueChange={(value) => {
+            if (isAuthRole(value)) setRole(value)
+          }}
           className="gap-5"
         >
           <TabsList className="grid w-full grid-cols-2">

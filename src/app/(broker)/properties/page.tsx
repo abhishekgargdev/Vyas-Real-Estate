@@ -42,7 +42,7 @@ import {
 } from "@/components/ui/table"
 import { properties as allProperties } from "@/data/properties"
 import { cn } from "@/lib/utils"
-import type { Property, PropertyStatus, PropertyType } from "@/types"
+import type { PropertyStatus, PropertyType } from "@/types"
 
 const PROPERTY_TYPES: PropertyType[] = ["Flat", "Villa", "Shop", "Studio"]
 

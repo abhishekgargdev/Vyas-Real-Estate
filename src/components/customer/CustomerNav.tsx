@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { useEffect, useState } from "react"
+import { useSyncExternalStore } from "react"
 import {
   Bell,
   BookOpen,
@@ -27,18 +27,25 @@ const NAV_ITEMS = [
   { label: "Profile", href: "/portal#preferences", icon: BookOpen },
 ] as const
 
+function subscribeToHash(onStoreChange: () => void) {
+  window.addEventListener("hashchange", onStoreChange)
+  return () => window.removeEventListener("hashchange", onStoreChange)
+}
+
+function getHashSnapshot() {
+  return window.location.hash
+}
+
+function getHashServerSnapshot() {
+  return ""
+}
+
 function useLocationHash() {
-  const pathname = usePathname()
-  const [hash, setHash] = useState("")
-
-  useEffect(() => {
-    const updateHash = () => setHash(window.location.hash)
-    updateHash()
-    window.addEventListener("hashchange", updateHash)
-    return () => window.removeEventListener("hashchange", updateHash)
-  }, [pathname])
-
-  return hash
+  return useSyncExternalStore(
+    subscribeToHash,
+    getHashSnapshot,
+    getHashServerSnapshot
+  )
 }
 
 export function CustomerNav() {
