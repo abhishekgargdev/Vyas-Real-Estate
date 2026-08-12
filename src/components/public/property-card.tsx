@@ -104,7 +104,7 @@ export function PropertyCard({ property }: { property: Property }) {
             {property.priceLabel}
           </span>
           <Link
-            href={`/listings/${property.id}`}
+            href={`/properties/${property.id}`}
             className={cn(
               buttonVariants({ variant: "outline", size: "sm" }),
               "h-auto gap-1 px-3.5 py-2 text-xs font-semibold",

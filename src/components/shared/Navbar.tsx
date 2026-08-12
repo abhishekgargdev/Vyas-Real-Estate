@@ -10,7 +10,7 @@ import { cn } from "@/lib/utils"
 const navLinks = [
   { label: "Home", href: "/" },
   { label: "About", href: "/about" },
-  { label: "Properties", href: "/listings" },
+  { label: "Properties", href: "/properties" },
   { label: "Contact", href: "/contact" },
 ] as const
 
@@ -72,7 +72,7 @@ export function Navbar() {
           >
             Dashboard
           </Link>
-          <Link href="/listings" className={buttonVariants({ size: "sm" })}>
+          <Link href="/properties" className={buttonVariants({ size: "sm" })}>
             Browse
           </Link>
         </div>

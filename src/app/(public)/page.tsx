@@ -120,7 +120,7 @@ export default function HomePage() {
               </h2>
             </div>
             <Link
-              href="/listings"
+              href="/properties"
               className="inline-flex items-center gap-1.5 border-b border-accent pb-0.5 text-[13px] font-semibold text-accent-foreground"
             >
               View All Properties
@@ -197,7 +197,7 @@ export default function HomePage() {
               return (
                 <Link
                   key={category.label}
-                  href="/listings"
+                  href="/properties"
                   onMouseEnter={() => setHoveredCategory(index)}
                   onMouseLeave={() => setHoveredCategory(null)}
                   className={cn(
