@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist_Mono, Inter, Playfair_Display } from "next/font/google";
+import { Toaster } from "@/components/ui/toast";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,7 +29,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${playfairDisplay.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <Toaster>{children}</Toaster>
+      </body>
     </html>
   );
 }
